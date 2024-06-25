@@ -1,11 +1,13 @@
-const socket = new WebSocket('ws://localhost:3000');
+const socket = io('http://localhost:3500');
 
 const sendMessage = (e) => {
   e.preventDefault();
   const input = document.querySelector('input');
   if (input.value) {
-    socket.send(input.value);
+    socket.emit('chat message', input.value);
     input.value = '';
+  } else {
+    console.log('there is no input value');
   }
   input.focus();
 };
@@ -13,7 +15,7 @@ const sendMessage = (e) => {
 document.querySelector('form').addEventListener('submit', sendMessage);
 
 //Listen for messages
-socket.addEventListener('message', ({ data }) => {
+socket.on('message', (data) => {
   const li = document.createElement('li');
   li.textContent = data;
   document.querySelector('ul').appendChild(li);
