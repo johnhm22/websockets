@@ -1,5 +1,5 @@
 {
-  "name": "lesson_2_socket.io",
+  "name": "lesson_3_adding_express",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.19.2",
     "socket.io": "^4.7.5"
   }
 }
