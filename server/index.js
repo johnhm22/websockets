@@ -25,15 +25,35 @@ const io = new Server(expressServer, {
   },
 });
 
+// Listening on the connection event for incoming sockets
 io.on('connection', (socket) => {
+  // Upon connection - only to user
+  socket.emit('message', 'Welcome to chat app');
+
+  io.emit('initial message', `${socket.id.substring(0, 5)} has joined`);
+
+  // Upon connection - to all others
+  socket.broadcast.emit(
+    'message',
+    `${socket.id.substring(0, 5)} has connected`,
+  );
+
+  // Listening for a message event
   socket.on('chat message', (data) => {
     io.emit('message', `${socket.id.substring(0, 5)}: ${data}`);
   });
-  socket.on('chat message', () => {
-    console.log('a user connected');
-  });
+
+  // When user disconnects - to all others
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    socket.broadcast.emit(
+      'message',
+      `User ${socket.id.substring(0, 5)} disconnected`,
+    );
+  });
+
+  // Listen for activity
+  socket.on('activity', (name) => {
+    socket.broadcast.emit('activity', name);
   });
 });
 
