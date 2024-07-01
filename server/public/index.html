@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>socket.io</title>
+    <title>Chat Room App</title>
     <link href="style.css" rel="stylesheet" />
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.5/socket.io.min.js"
@@ -14,12 +14,34 @@
     <script defer src="app.js"></script>
   </head>
   <body>
-    <h2></h2>
-    <form>
-      <input type="text" placeholder="your message" />
-      <button>Send</button>
-    </form>
-    <ul></ul>
-    <p class="activity"></p>
+    <main>
+      <h2></h2>
+      <form class="form-join">
+        <input
+          type="text"
+          id="name"
+          placeholder="Your name"
+          size="5"
+          required
+          maxlength="8"
+        />
+        <input
+          type="text"
+          id="room"
+          placeholder="Chat room"
+          size="5"
+          required
+        />
+        <button type="submit" id="join">Join</button>
+      </form>
+      <ul class="chat-display"></ul>
+      <p class="user-list"></p>
+      <p class="room-list"></p>
+      <p class="activity"></p>
+      <form class="form-message">
+        <input type="text" id="message" required placeholder="Your message" />
+        <button type="submit">Send</button>
+      </form>
+    </main>
   </body>
 </html>
