@@ -38,9 +38,9 @@ document.querySelector('.form-message').addEventListener('submit', sendMessage);
 document.querySelector('.form-join').addEventListener('submit', enterRoom);
 
 msgInput.addEventListener('keypress', () => {
-  if (nameInput.value && msgInput.value && chatRoom.value) {
-    socket.emit('activity', nameInput.value);
-  }
+  // if (nameInput.value && msgInput.value && chatRoom.value) {
+  socket.emit('activity', nameInput.value);
+  // }
 });
 
 // Display an h2 of new user connection in index.html

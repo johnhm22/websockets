@@ -130,7 +130,7 @@ io.on('connection', (socket) => {
 
   // Listen for activity - this tells everyone else in the room if a user is typing
   socket.on('activity', (name) => {
-    const { room } = getUser(socket.id);
+    const room = getUser(socket.id)?.room;
     if (room) {
       //broadcast sends the message to all except the socket owner
       socket.broadcast.to(room).emit('activity', name);
